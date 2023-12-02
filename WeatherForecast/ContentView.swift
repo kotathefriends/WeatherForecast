@@ -12,7 +12,7 @@ struct ContentView: View {
         
         ScrollView(.horizontal) {
             HStack {
-                DayForecast(day: "Mon", isRainy: false, high: 70, low: 50)
+                DayForecast(day: "Mon", isRainy: false, high: 90, low: 50)
                 DayForecast(day: "Tue", isRainy: true, high: 60, low: 40)
                 DayForecast(day: "Wed", isRainy: true, high: 60, low: 40)
                 DayForecast(day: "Thu", isRainy: false, high: 60, low: 40)
@@ -52,6 +52,14 @@ struct DayForecast: View {
         }
     }
     
+    var textColor: Color {
+        if high > 80 {
+            return.red
+        } else {
+            return Color.primary
+        }
+    }
+    
     var body: some View {
         VStack {
             Text(day)
@@ -62,6 +70,7 @@ struct DayForecast: View {
                 .padding(5)
             Text("High: \(high)º")
                 .fontWeight(Font.Weight.semibold)
+                .foregroundStyle(textColor)
             Text("Low: \(low)º")
                 .fontWeight(Font.Weight.medium)
                 .foregroundStyle(Color.secondary)
